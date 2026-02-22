@@ -13,3 +13,19 @@ export const state = {
   activeView: "main",
   bookmarks: [],
 };
+
+export function getTagCounts() {
+  let tagCounts = {};
+
+  state.bookmarks.forEach((bookmark) => {
+    bookmark.tags.forEach((tag) => {
+      if (tagCounts[tag]) {
+        tagCounts[tag]++;
+      } else {
+        tagCounts[tag] = 1;
+      }
+    });
+  });
+
+  return tagCounts;
+}

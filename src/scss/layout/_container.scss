@@ -13,7 +13,7 @@
 
 .cards__container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(21.125rem, 1fr));
   gap: var(--spacing-200, 1rem);
   align-items: stretch;
 }
@@ -23,10 +23,22 @@
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  background-color: var(--color-surface);
+  background-color: var(--color-control-bg);
+  color: var(--color-control-text);
   padding: var(--spacing-125, 0.625rem) var(--spacing-150, 0.75rem);
   border-radius: var(--radius-md, 0.5rem);
-  border: 1px solid var(--colors-neutral-light-mode-400, #c0cfcc);
+  border: 1px solid var(--color-control-border);
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+
+  svg path {
+    stroke: currentColor;
+  }
+
+  &:hover {
+    background-color: var(--color-control-hover-bg);
+  }
 }
 
 .card__content {
@@ -46,6 +58,10 @@
   border-radius: var(--radius-12, 0.75rem);
   border: 1px solid var(--color-border);
   overflow: hidden;
+}
+
+.cards__header-title {
+  color: var(--color-headings);
 }
 
 .card__topic {
@@ -71,8 +87,8 @@
   flex-shrink: 0;
   overflow: hidden;
   border-radius: var(--radius-8, 0.5rem);
-  border: 1px solid var(--color-border);
-  background: #fff;
+  border: 1px solid var(--color-favicon-border);
+  background: var(--color-favicon-bg);
 }
 
 .card__favicon img {
@@ -90,6 +106,10 @@
   min-width: 0;
 }
 
+.card__title h2 {
+  color: var(--color-headings);
+}
+
 .card__url {
   color: var(--color-text);
   white-space: nowrap;
@@ -98,15 +118,32 @@
 }
 
 .card-btn {
-  width: 2rem;
-  height: 2rem;
+  width: 2.75rem;
+  height: 2.75rem;
   border-radius: var(--radius-md, 0.5rem);
-  border: 1px solid var(--colors-neutral-light-mode-400, #c0cfcc);
-  background: var(--colors-neutral-light-mode-0, #fff);
+  border: 1px solid var(--color-control-border);
+  background: var(--color-control-bg);
+  color: var(--color-control-icon);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+
+  svg path {
+    stroke: currentColor;
+  }
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  &:hover {
+    background-color: var(--color-control-hover-bg);
+  }
 }
 
 .card__divider {
@@ -180,6 +217,10 @@
   align-items: center;
   gap: var(--spacing-050, 0.25rem);
   color: var(--color-text);
+
+  svg path {
+    stroke: currentColor;
+  }
 }
 
 .card__views svg,

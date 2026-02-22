@@ -2,11 +2,49 @@
   color-scheme: dark;
   --color-bg: #001414;
   --color-text: #b1b9b9;
-  --color-surface: #004241;
+  --color-surface: #002e2d;
+  --color-panel: #001f1f;
   --color-headings: #ffffff;
-  --color-border: #007476;
-  --color-accent: #014745;
-  --color-on-accent: #ffffff;
-  --color-tag-items: #002e2d;
+  --color-border: #004241;
   --color-divider: #004241;
+
+  --color-accent: #007476;
+  --color-on-accent: #ffffff;
+  --color-accent-border: rgba(255, 255, 255, 0.12);
+
+  --color-control-bg: #002e2d;
+  --color-control-border: #004241;
+  --color-control-icon: #b1b9b9;
+  --color-control-text: #ffffff;
+  --color-control-hover-bg: #004241;
+
+  --color-input-bg: #002e2d;
+  --color-input-text: #ffffff;
+  --color-input-placeholder: #8fa4a4;
+
+  --color-tag-items: #004241;
+  --color-badge-bg: #004241;
+  --color-badge-border: #007476;
+  --color-badge-text: #ffffff;
+  --color-checkbox-border: #007476;
+  --color-checkbox-bg: #001f1f;
+  --color-checkbox-hover-bg: #002e2d;
+  --color-checkbox-hover-border: #007476;
+  --color-checkbox-selected-bg: #004241;
+  --color-checkbox-selected-border: #007476;
+  --color-checkbox-check: #ffffff;
+  --color-checkbox-ring-gap: #001f1f;
+  --color-checkbox-ring: #007476;
+  --color-checkbox-shadow: rgba(0, 0, 0, 0.35);
+
+  --color-link-subtle: #b1b9b9;
+  --color-link-subtle-underline: #004241;
+
+  --color-nav-active-bg: #004241;
+  --color-nav-active-text: #ffffff;
+
+  --color-favicon-bg: #ffffff;
+  --color-favicon-border: #004241;
+
+  --color-inset-shadow: rgba(0, 0, 0, 0.28);
 }
