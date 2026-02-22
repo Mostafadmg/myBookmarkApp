@@ -1,0 +1,188 @@
+@use "../abstracts/mixins" as *;
+
+.header {
+  padding: var(--spacing-200, 1rem) var(--spacing-400, 2rem);
+  background-color: var(--color-surface);
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: var(--spacing-200, 1rem);
+}
+
+/* Header content wrapper */
+.header__container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: var(--spacing-200, 1rem);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Header menu button wrapper */
+.header__btn {
+  display: flex;
+}
+
+/* Header button group */
+.header__btnGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-200);
+}
+
+/* Header menu button */
+.header__menuBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-width: 2.75rem;
+  border-radius: var(--radius-md, 0.5rem);
+  border: 1px solid var(--color-border, #c0cfcc);
+  padding: var(--spacing-150, 0.75rem) var(--spacing-200, 1rem);
+
+  @include desktop {
+    display: none;
+  }
+}
+
+/* input */
+.header__form {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-150, 0.75rem);
+  border-radius: var(--corner-radius-8, 0.5rem);
+  gap: var(--spacing-150);
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+.header__input {
+  width: 100%;
+  min-width: 0;
+  border: none;
+  background-color: var(--color-surface);
+  outline: none;
+}
+
+/* Header add bookmark button */
+.header__addBtn {
+  background: var(--color-accent, #014745);
+  color: var(--color-on-accent, #fff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--radius-md, 0.5rem);
+  padding: var(--spacing-150, 0.75rem) var(--spacing-200, 1rem);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 0 0 0 var(--color-surface),
+    0 0 0 0 var(--color-accent),
+    0 0 0 1px rgba(34, 38, 39, 0.12) inset;
+  gap: var(--spacing-150);
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow:
+      0 0 0 2px var(--color-surface),
+      0 0 0 5px var(--color-accent),
+      0 0 0 1px rgba(34, 38, 39, 0.12) inset;
+  }
+
+  svg path {
+    stroke: #fff;
+  }
+}
+
+/* Header user avatar button */
+.header__userNameBtn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 2.84094rem;
+  box-shadow:
+    0 0 0 0 var(--color-surface),
+    0 0 0 0 var(--color-accent),
+    0 0 0 1px rgba(34, 38, 39, 0.12) inset;
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow:
+      0 0 0 2px var(--color-surface),
+      0 0 0 5px var(--color-accent),
+      0 0 0 1px rgba(34, 38, 39, 0.12) inset;
+  }
+}
+
+@media (max-width: 900px) {
+  .header {
+    padding: var(--spacing-150, 0.75rem) var(--spacing-200, 1rem);
+    gap: var(--spacing-150, 0.75rem);
+  }
+
+  .header__container,
+  .header__btnGroup {
+    gap: var(--spacing-150, 0.75rem);
+  }
+
+  .header__menuBtn,
+  .header__form,
+  .header__addBtn {
+    padding: var(--spacing-125, 0.625rem) var(--spacing-150, 0.75rem);
+  }
+
+  .header__userNameBtn {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .header {
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .header__container {
+    width: auto;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .header__btnGroup {
+    width: auto;
+    flex-shrink: 0;
+    justify-content: flex-end;
+  }
+
+  .header__addBtn {
+    min-width: 2.5rem;
+    padding: var(--spacing-125, 0.625rem);
+  }
+
+  .header__addBookmark-text {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .header {
+    padding: var(--spacing-100, 0.5rem) var(--spacing-150, 0.75rem);
+  }
+
+  .header__menuBtn {
+    min-width: 2.25rem;
+    padding: var(--spacing-100, 0.5rem) var(--spacing-125, 0.625rem);
+  }
+
+  .header__form {
+    padding: var(--spacing-100, 0.5rem);
+    gap: var(--spacing-100, 0.5rem);
+  }
+}

@@ -1,0 +1,110 @@
+$font-family-manrope: "Manrope", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$text-preset-1-font-family: $font-family-manrope;
+$text-preset-1-font-weight: $font-weight-bold;
+$text-preset-1-font-size: 24px;
+$text-preset-1-line-height: 140%;
+$text-preset-1-letter-spacing: 0px;
+
+$text-preset-2-font-family: $font-family-manrope;
+$text-preset-2-font-weight: $font-weight-bold;
+$text-preset-2-font-size: 20px;
+$text-preset-2-line-height: 120%;
+$text-preset-2-letter-spacing: 0px;
+
+$text-preset-2-semibold-font-family: $font-family-manrope;
+$text-preset-2-semibold-font-weight: $font-weight-semibold;
+$text-preset-2-semibold-font-size: 20px;
+$text-preset-2-semibold-line-height: 120%;
+$text-preset-2-semibold-letter-spacing: 0px;
+
+$text-preset-3-font-family: $font-family-manrope;
+$text-preset-3-font-weight: $font-weight-semibold;
+$text-preset-3-font-size: 16px;
+$text-preset-3-line-height: 140%;
+$text-preset-3-letter-spacing: 0px;
+
+$text-preset-3-medium-font-family: $font-family-manrope;
+$text-preset-3-medium-font-weight: $font-weight-medium;
+$text-preset-3-medium-font-size: 16px;
+$text-preset-3-medium-line-height: 130%;
+$text-preset-3-medium-letter-spacing: 0px;
+
+$text-preset-4-font-family: $font-family-manrope;
+$text-preset-4-font-weight: $font-weight-semibold;
+$text-preset-4-font-size: 14px;
+$text-preset-4-line-height: 140%;
+$text-preset-4-letter-spacing: 0px;
+
+$text-preset-4-medium-font-family: $font-family-manrope;
+$text-preset-4-medium-font-weight: $font-weight-medium;
+$text-preset-4-medium-font-size: 14px;
+$text-preset-4-medium-line-height: 150%;
+$text-preset-4-medium-letter-spacing: 0px;
+
+$text-preset-5-font-family: $font-family-manrope;
+$text-preset-5-font-weight: $font-weight-medium;
+$text-preset-5-font-size: 12px;
+$text-preset-5-line-height: 140%;
+$text-preset-5-letter-spacing: 0px;
+
+$spacing-0: 0;
+$spacing-025: 2px;
+$spacing-050: 4px;
+$spacing-075: 6px;
+$spacing-100: 8px;
+$spacing-125: 10px;
+$spacing-150: 12px;
+$spacing-200: 16px;
+$spacing-250: 20px;
+$spacing-300: 24px;
+$spacing-400: 32px;
+$spacing-500: 40px;
+$spacing-600: 48px;
+$spacing-800: 64px;
+$spacing-1000: 80px;
+$spacing-1200: 96px;
+$spacing-1400: 112px;
+$spacing-1600: 128px;
+$spacing-1800: 140px;
+
+$radius-0: 0;
+$radius-4: 4px;
+$radius-6: 6px;
+$radius-8: 8px;
+$radius-10: 10px;
+$radius-12: 12px;
+$radius-16: 16px;
+$radius-20: 20px;
+$radius-24: 24px;
+$radius-full: 999px;
+
+$neutral-light-900: #051513;
+$neutral-light-800: #4c5c59;
+$neutral-light-500: #899492;
+$neutral-light-400: #c0cfcc;
+$neutral-light-300: #dde9e7;
+$neutral-light-100: #e8f0ef;
+$neutral-light-0: #ffffff;
+
+$neutral-dark-900: #001414;
+$neutral-dark-800: #001f1f;
+$neutral-dark-600: #002e2d;
+$neutral-dark-500: #004241;
+$neutral-dark-400: #007476;
+$neutral-dark-300: #00706e;
+$neutral-dark-100: #b1b9b9;
+$neutral-dark-0: #ffffff;
+
+$teal-700: #014745;
+$teal-800: #013c3b;
+
+$red-600: #fd4740;
+$red-800: #cb0a04;
+
+$font-family-base: $font-family-manrope;
+$font-size-base: 1rem;

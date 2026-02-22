@@ -1,0 +1,208 @@
+.cards {
+  padding: var(--spacing-400, 2rem) var(--spacing-400, 2rem) var(--spacing-1000, 5rem);
+}
+
+.cards__header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  gap: var(--spacing-200, 1rem);
+  margin-bottom: var(--spacing-300, 1.5rem);
+}
+
+.cards__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: var(--spacing-200, 1rem);
+  align-items: stretch;
+}
+
+.sort-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-surface);
+  padding: var(--spacing-125, 0.625rem) var(--spacing-150, 0.75rem);
+  border-radius: var(--radius-md, 0.5rem);
+  border: 1px solid var(--colors-neutral-light-mode-400, #c0cfcc);
+}
+
+.card__content {
+  padding: var(--spacing-250, 1.25rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200, 1rem);
+  flex: 1 1 auto;
+}
+
+.card__item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 22rem;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-12, 0.75rem);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.card__topic {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--spacing-150, 0.75rem);
+  min-width: 0;
+}
+
+.card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-150, 0.75rem);
+}
+
+.card__favicon {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: var(--radius-8, 0.5rem);
+  border: 1px solid var(--color-border);
+  background: #fff;
+}
+
+.card__favicon img {
+  width: 1.75rem;
+  height: 1.75rem;
+  object-fit: contain;
+}
+
+.card__title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.125rem;
+  min-width: 0;
+}
+
+.card__url {
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-btn {
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-md, 0.5rem);
+  border: 1px solid var(--colors-neutral-light-mode-400, #c0cfcc);
+  background: var(--colors-neutral-light-mode-0, #fff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.card__divider {
+  background: var(--color-divider);
+  height: 0.0625rem;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+.card__description {
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+.card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: var(--spacing-100, 0.5rem);
+}
+
+.card__tag-items {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: var(--spacing-050, 0.25rem) var(--spacing-125, 0.625rem);
+  background-color: var(--color-tag-items, #e8f0ef);
+  border-radius: var(--radius-6, 0.375rem);
+  color: var(--color-text);
+}
+
+.card__pinned {
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+  }
+}
+
+.card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-200, 1rem);
+  margin-top: auto;
+  padding: var(--spacing-150, 0.75rem) var(--spacing-250, 1.25rem);
+  border-top: 1px solid var(--color-divider);
+}
+
+.card__info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-150, 0.75rem);
+  min-width: 0;
+}
+
+.card__views,
+.card__time,
+.card__date,
+.card__pinned {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-050, 0.25rem);
+  color: var(--color-text);
+}
+
+.card__views svg,
+.card__time svg,
+.card__date svg {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.card__views-value,
+.card__time-value,
+.card__date-value {
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.card__time-date {
+  display: inline-flex;
+  align-items: center;
+}
+
+.card__pinned {
+  margin-left: auto;
+  white-space: nowrap;
+}

@@ -1,0 +1,7 @@
+@use "../abstracts/placeholders";
+
+.card {
+  @extend %card-surface;
+  padding: 1rem;
+}
+

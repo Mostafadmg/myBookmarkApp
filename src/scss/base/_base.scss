@@ -1,0 +1,101 @@
+:root {
+  --spacing-0: 0;
+  --spacing-025: 2px;
+  --spacing-050: 4px;
+  --spacing-075: 6px;
+  --spacing-100: 8px;
+  --spacing-125: 10px;
+  --spacing-150: 12px;
+  --spacing-200: 16px;
+  --spacing-250: 20px;
+  --spacing-300: 24px;
+  --spacing-400: 32px;
+  --spacing-500: 40px;
+  --spacing-600: 48px;
+  --spacing-800: 64px;
+  --spacing-1000: 80px;
+  --spacing-1200: 96px;
+  --spacing-1400: 112px;
+  --spacing-1600: 128px;
+  --spacing-1800: 140px;
+
+  --radius-0: 0;
+  --radius-4: 4px;
+  --radius-6: 6px;
+  --radius-8: 8px;
+  --radius-10: 10px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-20: 20px;
+  --radius-24: 24px;
+  --radius-full: 999px;
+  --radius-md: var(--radius-8);
+
+  --colors-neutral-light-mode-900: #051513;
+  --colors-neutral-light-mode-800: #4c5c59;
+  --colors-neutral-light-mode-500: #899492;
+  --colors-neutral-light-mode-400: #c0cfcc;
+  --colors-neutral-light-mode-300: #dde9e7;
+  --colors-neutral-light-mode-100: #e8f0ef;
+  --colors-neutral-light-mode-0: #ffffff;
+
+  --colors-neutral-dark-mode-900: #001414;
+  --colors-neutral-dark-mode-800: #001f1f;
+  --colors-neutral-dark-mode-600: #002e2d;
+  --colors-neutral-dark-mode-500: #004241;
+  --colors-neutral-dark-mode-400: #007476;
+  --colors-neutral-dark-mode-300: #00706e;
+  --colors-neutral-dark-mode-100: #b1b9b9;
+  --colors-neutral-dark-mode-0: #ffffff;
+
+  --colors-teal-700: #014745;
+  --colors-teal-800: #013c3b;
+  --colors-red-600: #fd4740;
+  --colors-red-800: #cb0a04;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+body {
+  background-color: var(--color-bg);
+  font-family: Manrope;
+  min-height: 100dvh;
+}
+
+#app,
+.app {
+  display: flex;
+  min-height: 100dvh;
+}
+
+main {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+li {
+  list-style: none;
+}
