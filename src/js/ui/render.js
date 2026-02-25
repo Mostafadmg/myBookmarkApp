@@ -1,4 +1,3 @@
-import { renderBookmarkList } from "./components/bookmarkList";
 import { renderSearchBar } from "./components/searchBar";
 import { renderSidebar } from "./components/sidebar";
 import { renderSortControls } from "./components/sortControls";

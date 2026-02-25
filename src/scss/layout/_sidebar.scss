@@ -13,8 +13,15 @@
   overflow-y: auto;
   background-color: var(--color-panel);
   color: var(--color-text);
-  display: none;
   border-right: 1px solid var(--color-divider);
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-100%);
+  opacity: 0;
+  transition:
+    transform 0.28s ease,
+    opacity 0.2s ease,
+    visibility 0s linear 0.28s;
 
   @include tablet {
     width: clamp(20rem, 42vw, 24rem);
@@ -30,6 +37,21 @@
     height: auto;
     min-height: 100dvh;
     display: block;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    opacity: 1;
+    transition: none;
+  }
+  &.open {
+    visibility: visible;
+    pointer-events: auto;
+    opacity: 1;
+    transform: translateX(0);
+    transition:
+      transform 0.28s ease,
+      opacity 0.2s ease,
+      visibility 0s;
   }
 }
 
@@ -109,7 +131,9 @@
   color: var(--color-text);
   text-align: left;
   cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
 
   svg path {
     stroke: currentColor;

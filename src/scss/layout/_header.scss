@@ -44,7 +44,9 @@
   background-color: var(--color-control-bg);
   color: var(--color-control-icon);
   padding: var(--spacing-150, 0.75rem) var(--spacing-200, 1rem);
-  transition: background-color 0.15s ease, border-color 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
 
   svg path {
     stroke: currentColor;
@@ -156,6 +158,13 @@
   transition: box-shadow 0.2s ease;
 
   &:hover {
+    box-shadow:
+      0 0 0 2px var(--color-panel),
+      0 0 0 5px var(--color-accent),
+      0 0 0 1px var(--color-inset-shadow) inset;
+  }
+
+  &.active {
     box-shadow:
       0 0 0 2px var(--color-panel),
       0 0 0 5px var(--color-accent),

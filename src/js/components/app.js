@@ -11,6 +11,7 @@ export function renderApp() {
 ${renderSidebar()}
   <main>${renderHeader()}
   ${renderBookmarks()}
+  ${renderModal()}
   </main>
   `;
 

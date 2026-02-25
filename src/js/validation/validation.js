@@ -1,29 +1,76 @@
-function isValidHttpUrl(value) {
-  try {
-    const parsed = new URL(value);
-    return parsed.protocol === "http:" || parsed.protocol === "https:";
-  } catch {
-    return false;
-  }
+import { state } from "../state/state";
+import { createBookmark } from "../state/bookmarkFactory";
+import { refreshUI } from "../ui/refreshUI";
+import { getFavicon } from "../services/favicon";
+
+export function validateForm() {
+  const title = document.querySelector(".addbookmark__input");
+  const description = document.querySelector(".addbookmark__textarea");
+  const url = document.getElementById("addbookmark-url-input");
+  const tags = document.getElementById("addbookmark-tags-input");
+
+  let isValid = true;
+
+  if (!title || !description || !url || !tags) return;
+
+  const fields = [
+    { input: title, validate: (val) => val.trim() !== "" },
+    { input: description, validate: (val) => val.trim() !== "" },
+    {
+      input: url,
+      validate: (val) => {
+        try {
+          new URL(val);
+          return true; // if we get here, URL is valid
+        } catch {
+          return false; // URL threw an error = invalid
+        }
+      },
+    },
+    { input: tags, validate: (val) => val.trim() !== "" },
+  ];
+
+  fields.forEach(({ input, validate }) => {
+    if (!validate(input.value)) {
+      setError(input);
+      isValid = false;
+    } else {
+      clearError(input);
+    }
+  });
+  return isValid;
 }
 
-export function validateBookmarkInput({ title = "", url = "", tags = [] } = {}) {
-  const errors = {};
+export function addNewBookMark() {
+  const title = document.querySelector(".addbookmark__input");
+  const description = document.querySelector(".addbookmark__textarea");
+  const url = document.getElementById("addbookmark-url-input");
+  const tags = document.getElementById("addbookmark-tags-input");
 
-  if (!title.trim()) {
-    errors.title = "Title is required.";
-  }
+  const isValid = validateForm();
+  if (!isValid) return;
 
-  if (!url.trim() || !isValidHttpUrl(url)) {
-    errors.url = "Valid URL is required.";
-  }
+  const newbookmark = createBookmark({
+    title: title.value,
+    description: description.value,
+    url: url.value,
+    tags: tags.value
+      .split(",")
+      .map((tag) => tag.trim())
+      .filter((tag) => tag !== ""),
+    favicon: getFavicon(url.value),
+  });
+  state.bookmarks.push(newbookmark);
 
-  if (tags.length > 8) {
-    errors.tags = "Use 8 tags or fewer.";
-  }
+  refreshUI();
+}
 
-  return {
-    isValid: Object.keys(errors).length === 0,
-    errors,
-  };
+function setError(input) {
+  const field = input.closest(".addbookmark__field");
+  field.classList.add("error");
+}
+
+function clearError(input) {
+  const field = input.closest(".addbookmark__field");
+  field.classList.remove("error");
 }

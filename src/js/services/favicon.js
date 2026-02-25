@@ -1,14 +1,5 @@
-const faviconEndpoint = "https://www.google.com/s2/favicons";
+export function getFavicon(urlString) {
+  const url = new URL(urlString);
 
-export function getFaviconUrl(websiteUrl, size = 64) {
-  if (!websiteUrl) {
-    return "";
-  }
-
-  try {
-    const parsedUrl = new URL(websiteUrl);
-    return `${faviconEndpoint}?sz=${size}&domain=${parsedUrl.hostname}`;
-  } catch {
-    return "";
-  }
+  return `https://www.google.com/s2/favicons?domain=${url.hostname}&sz=64`;
 }
