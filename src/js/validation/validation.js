@@ -60,17 +60,48 @@ export function addNewBookMark() {
       .filter((tag) => tag !== ""),
     favicon: getFavicon(url.value),
   });
-  state.bookmarks.push(newbookmark);
+
+  const toUpdateBookmark = state.bookmarks.find(
+    (bookmark) => bookmark.id === state.editingBookmarkId,
+  );
+
+  if (toUpdateBookmark) {
+    toUpdateBookmark.title = title.value;
+    toUpdateBookmark.description = description.value;
+    toUpdateBookmark.url = url.value;
+    toUpdateBookmark.tags = tags.value
+      .split(",")
+      .map((tag) => tag.trim())
+      .filter((tag) => tag !== "");
+    toUpdateBookmark.favicon = getFavicon(url.value);
+  } else {
+    state.bookmarks.push(newbookmark);
+  }
 
   refreshUI();
-}
+  clearForm();
 
-function setError(input) {
-  const field = input.closest(".addbookmark__field");
-  field.classList.add("error");
-}
+  function setError(input) {
+    const field = input.closest(".addbookmark__field");
+    field.classList.add("error");
+  }
 
-function clearError(input) {
-  const field = input.closest(".addbookmark__field");
-  field.classList.remove("error");
+  function clearError(input) {
+    const field = input.closest(".addbookmark__field");
+    field.classList.remove("error");
+  }
+}
+export function clearForm() {
+  const title = document.querySelector(".addbookmark__input");
+  const description = document.querySelector(".addbookmark__textarea");
+  const url = document.getElementById("addbookmark-url-input");
+  const tags = document.getElementById("addbookmark-tags-input");
+  title.value = "";
+  description.value = "";
+  url.value = "";
+  tags.value = "";
+  state.editingBookmarkId = null;
+  document
+    .querySelectorAll(".addbookmark__field")
+    .forEach((field) => field.classList.remove("error"));
 }

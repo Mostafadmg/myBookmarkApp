@@ -1,0 +1,180 @@
+.bookmarkconfirm {
+  display: flex;
+  width: 100%;
+  position: absolute;
+  inset: 0;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-400, 2rem);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.2s ease,
+    visibility 0s linear 0.2s;
+}
+
+.bookmarkconfirm[data-state="open"] {
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.2s ease,
+    visibility 0s;
+}
+
+.bookmarkconfirm[data-state="closed"] {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.bookmarkconfirm__backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(5, 21, 19, 0.56);
+  cursor: pointer;
+}
+
+:root[data-theme="dark"] .bookmarkconfirm__backdrop {
+  background: rgba(0, 0, 0, 0.62);
+}
+
+.bookmarkconfirm__dialog {
+  position: relative;
+  width: min(100%, 30rem);
+  border-radius: var(--radius-16, 1rem);
+  border: 1px solid var(--color-border);
+  background: var(--color-panel);
+  color: var(--color-text);
+  box-shadow:
+    0 1.25rem 2.5rem rgba(5, 21, 19, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+  padding: var(--spacing-500, 2.5rem);
+}
+
+:root[data-theme="dark"] .bookmarkconfirm__dialog {
+  box-shadow:
+    0 1.5rem 3rem rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+}
+
+.bookmarkconfirm__closeBtn {
+  position: absolute;
+  top: var(--spacing-250, 1.25rem);
+  right: var(--spacing-250, 1.25rem);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-8, 0.5rem);
+  border: 1px solid var(--color-control-border);
+  background: var(--color-control-bg);
+  color: var(--color-control-icon);
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+
+  svg path {
+    stroke: currentColor;
+  }
+
+  &:hover {
+    background: var(--color-control-hover-bg);
+    border-color: var(--color-accent);
+  }
+}
+
+.bookmarkconfirm__title {
+  margin: 0 0 var(--spacing-150, 0.75rem);
+  color: var(--color-headings);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  padding-right: 3rem;
+}
+
+.bookmarkconfirm__description {
+  margin: 0 0 var(--spacing-400, 2rem);
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.bookmarkconfirm__actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--spacing-200, 1rem);
+}
+
+.bookmarkconfirm__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-8, 0.5rem);
+  border: 1px solid var(--color-control-border);
+  background: var(--color-control-bg);
+  color: var(--color-control-text);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+
+  &:hover {
+    background: var(--color-control-hover-bg);
+    border-color: var(--color-accent);
+  }
+}
+
+.bookmarkconfirm__btn--ghost {
+  background: var(--color-control-bg);
+  color: var(--color-control-text);
+}
+
+.bookmarkconfirm__btn--primary {
+  border-color: var(--color-accent-border);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+
+  &:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+}
+
+.bookmarkconfirm__btn--danger {
+  border-color: var(--color-error, #d93025);
+  background: var(--color-error, #d93025);
+  color: #fff;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+@media (max-width: 700px) {
+  .bookmarkconfirm {
+    padding: var(--spacing-150, 0.75rem);
+  }
+
+  .bookmarkconfirm__dialog {
+    width: 100%;
+    padding: var(--spacing-300, 1.5rem);
+    border-radius: var(--radius-12, 0.75rem);
+  }
+
+  .bookmarkconfirm__actions {
+    flex-wrap: wrap;
+  }
+
+  .bookmarkconfirm__btn {
+    flex: 1 1 10rem;
+  }
+}

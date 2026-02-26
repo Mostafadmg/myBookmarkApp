@@ -2,6 +2,9 @@ import { state, getTagCounts } from "../state/state";
 import { icons } from "../icons";
 
 export function renderSidebar() {
+  const isHomeActive = state.activeView === "main";
+  const isArchivedActive = state.activeView === "archive";
+
   return /*html*/ `
 <div id="sidebar-panel" class="sidebar${state.isMobileSidebarOpen ? " open" : ""}" aria-hidden="${String(!state.isMobileSidebarOpen)}">
     <div class="sidebar__header">
@@ -13,11 +16,11 @@ export function renderSidebar() {
     </div>
     <section class="sidebar__content">
         <div class="sidebar__navigation text-3">
-            <button class="sidebar__homeBtn" type="button" data-action="navigate-home">
+            <button class="sidebar__homeBtn${isHomeActive ? " is-active" : ""}" type="button" data-action="navigate-home" ${isHomeActive ? 'aria-current="page"' : ""}>
                 ${icons.home}
                 <span>Home</span>
             </button>
-            <button class="sidebar__archivedBtn" type="button" data-action="navigate-archived">
+            <button class="sidebar__archivedBtn${isArchivedActive ? " is-active" : ""}" type="button" data-action="navigate-archived" ${isArchivedActive ? 'aria-current="page"' : ""}>
                 ${icons.archived}<span>Archived</span>
             </button>
         </div>

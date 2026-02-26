@@ -1,6 +1,7 @@
 import { icons } from "../icons";
 import { renderBookmarkItem } from "./bookmark";
 import { renderSidebar } from "./sidebar";
+import { clearForm } from "../validation/validation";
 
 export function renderModal() {
   return /* html */ `

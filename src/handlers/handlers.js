@@ -7,6 +7,7 @@ import { renderBookmarkItem } from "../js/components/bookmark";
 import { validateForm, addNewBookMark } from "../js/validation/validation";
 import { refreshUI } from "../js/ui/refreshUI";
 import { icons } from "../js/icons";
+import { clearForm } from "../js/validation/validation";
 
 function setSidebarOpen(isOpen) {
   state.isMobileSidebarOpen = isOpen;
@@ -61,10 +62,12 @@ export function initHandlers() {
 
     if (action === "close-addbookmark") {
       toggleModal(".addbookmark", false);
+      clearForm();
     }
 
     if (action === "cancel-addbookmark") {
       toggleModal(".addbookmark", false);
+      clearForm();
     }
 
     if (action === "sort") {
@@ -126,6 +129,65 @@ export function initHandlers() {
           clickedBtn.querySelector("span").textContent = "Copy URL";
         }, 2000);
       });
+    }
+
+    if (action === "toggle-pin-bookmark") {
+      const id = clickedBtn.closest("[data-bookmark-id]").dataset.bookmarkId;
+      const selectedBookmark = state.bookmarks.find((bookmark) => bookmark.id === id);
+
+      selectedBookmark.pinned = !selectedBookmark.pinned;
+      refreshUI();
+    }
+
+    if (action === "edit-bookmark") {
+      const id = clickedBtn.closest("[data-bookmark-id]").dataset.bookmarkId;
+      const selectedBookmark = state.bookmarks.find((bookmark) => bookmark.id === id);
+      toggleModal(".addbookmark", true);
+      const title = document.querySelector(".addbookmark__input");
+      const description = document.querySelector(".addbookmark__textarea");
+      const url = document.getElementById("addbookmark-url-input");
+      const tags = document.getElementById("addbookmark-tags-input");
+
+      title.value = selectedBookmark.title;
+      description.value = selectedBookmark.description;
+      url.value = selectedBookmark.url;
+      tags.value = selectedBookmark.tags;
+      state.editingBookmarkId = id;
+    }
+
+    if (action === "open-archive-confirm") {
+      const id = clickedBtn.closest("[data-bookmark-id]").dataset.bookmarkId;
+      state.archivingBookmarkId = id;
+      toggleModal(".bookmarkconfirm--archive", true);
+    }
+
+    if (action === "close-archive-confirm") {
+      toggleModal(".bookmarkconfirm--archive", false);
+    }
+
+    if (action === "cancel-archive-confirm") {
+      toggleModal(".bookmarkconfirm--archive", false);
+    }
+
+    if (action === "archive-bookmark") {
+      const selectedBookmark = state.bookmarks.find(
+        (bookmark) => bookmark.id === state.archivingBookmarkId,
+      );
+
+      selectedBookmark.isArchived = true;
+      toggleModal(".bookmarkconfirm--archive", false);
+      refreshUI();
+      state.archivingBookmarkId = null;
+    }
+
+    if (action === "navigate-home") {
+      state.activeView = "main";
+      refreshUI();
+    }
+
+    if (action === "navigate-archived") {
+      state.activeView = "archive";
+      refreshUI();
     }
   });
 

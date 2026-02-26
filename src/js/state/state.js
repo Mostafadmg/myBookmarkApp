@@ -15,6 +15,8 @@ export const state = {
   searchQuery: "",
   activeView: "main",
   bookmarks: [],
+  editingBookmarkId: null,
+  archivingBookmarkId: null,
 };
 
 export function getTagCounts() {
@@ -38,10 +40,15 @@ export async function initState() {
 }
 
 export function getSortedBookmarks() {
+  const baseBookmarks =
+    state.activeView === "archive"
+      ? state.bookmarks.filter((b) => b.isArchived)
+      : state.bookmarks.filter((b) => !b.isArchived);
+
   const filteredBookmarks =
     state.selectedTags.length === 0
-      ? [...state.bookmarks]
-      : [...state.bookmarks].filter((bookmark) =>
+      ? [...baseBookmarks]
+      : [...baseBookmarks].filter((bookmark) =>
           bookmark.tags.some((tag) => state.selectedTags.includes(tag)),
         );
 

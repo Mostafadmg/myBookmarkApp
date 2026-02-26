@@ -96,7 +96,7 @@ export function renderBookmarkItem() {
 
                     <button class="cardmenu__item" role="menuitem" type="button" data-action="toggle-pin-bookmark">
                         ${icons.pinSmall}
-                        <span>Pin</span>
+                        <span>${bookmark.pinned ? "Unpin" : "Pin"}</span>
                     </button>
 
                     <button class="cardmenu__item" role="menuitem" type="button" data-action="edit-bookmark">
@@ -104,7 +104,7 @@ export function renderBookmarkItem() {
                         <span>Edit</span>
                     </button>
 
-                    <button class="cardmenu__item" role="menuitem" type="button" data-action="archive-bookmark">
+                    <button class="cardmenu__item" role="menuitem" type="button" data-action="open-archive-confirm">
                         ${icons.archiveSmall}
                         <span>Archive</span>
                     </button>

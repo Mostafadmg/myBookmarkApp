@@ -140,7 +140,8 @@
   }
 }
 
-.sidebar__homeBtn {
+.sidebar__homeBtn.is-active,
+.sidebar__archivedBtn.is-active {
   background-color: var(--color-nav-active-bg);
   color: var(--color-nav-active-text);
 }
