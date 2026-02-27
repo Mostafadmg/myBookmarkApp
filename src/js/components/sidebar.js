@@ -7,7 +7,7 @@ export function renderSidebar() {
   const isArchivedActive = state.activeView === "archive";
 
   return /*html*/ `
-<div id="sidebar-panel" class="sidebar${state.isMobileSidebarOpen ? " open" : ""}" aria-hidden="${String(!state.isMobileSidebarOpen)}">
+<div id="sidebar-panel" class="sidebar${state.isMobileSidebarOpen ? " open" : ""}" aria-hidden="${String(!state.isMobileSidebarOpen)}"${!state.isMobileSidebarOpen ? " inert" : ""}>
     <div class="sidebar__header">
         <img class="sidebar__logo sidebar__logo--light" src="${withBase("assets/images/logo-light-theme.svg")}" alt="Bookmark Manager" />
         <img class="sidebar__logo sidebar__logo--dark" src="${withBase("assets/images/logo-dark-theme.svg")}" alt="Bookmark Manager" />

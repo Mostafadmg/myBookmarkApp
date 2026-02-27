@@ -15,8 +15,19 @@ function setSidebarOpen(isOpen) {
 
   const sidebar = document.querySelector(".sidebar");
   if (sidebar) {
+    if (!isOpen) {
+      const focused = sidebar.querySelector(":focus");
+      if (focused) focused.blur();
+    }
+
     sidebar.classList.toggle("open", isOpen);
     sidebar.setAttribute("aria-hidden", String(!isOpen));
+
+    if (isOpen) {
+      sidebar.removeAttribute("inert");
+    } else {
+      sidebar.setAttribute("inert", "");
+    }
   } else {
     // Fallback if handlers fire before initial render (shouldn't happen, but safe).
     renderApp();

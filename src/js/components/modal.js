@@ -445,9 +445,14 @@ export function renderModal() {
 export function toggleModal(selector, isOpen) {
   const modal = document.querySelector(selector);
   if (!modal) return;
+
+  if (!isOpen) {
+    const focused = modal.querySelector(":focus");
+    if (focused) focused.blur();
+  }
+
   modal.setAttribute("data-state", isOpen ? "open" : "closed");
   modal.setAttribute("aria-hidden", String(!isOpen));
-  const cardsContainer = document.querySelector(".cards__container");
 
   if (isOpen) {
     modal.removeAttribute("inert");
