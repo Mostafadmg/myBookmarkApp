@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: write
+  pages: write
 
 jobs:
   build-and-deploy:
@@ -29,8 +30,20 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy to gh-pages branch
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
           branch: gh-pages
+
+      - name: Switch Pages source to gh-pages branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api repos/${{ github.repository }}/pages \
+            --method PUT \
+            -H "Accept: application/vnd.github+json" \
+            -f build_type=legacy \
+            -f "source[branch]=gh-pages" \
+            -f "source[path]=/" \
+            || true
