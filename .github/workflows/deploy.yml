@@ -38,12 +38,12 @@ jobs:
 
       - name: Switch Pages source to gh-pages branch
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh api repos/${{ github.repository }}/pages \
-            --method PUT \
+          curl -s -X PUT \
             -H "Accept: application/vnd.github+json" \
-            -f build_type=legacy \
-            -f "source[branch]=gh-pages" \
-            -f "source[path]=/" \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/${{ github.repository }}/pages \
+            -d '{"build_type":"legacy","source":{"branch":"gh-pages","path":"/"}}' \
             || true
