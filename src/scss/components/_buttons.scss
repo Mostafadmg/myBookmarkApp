@@ -119,12 +119,13 @@
 .bookmarkconfirm__actions {
   margin-top: var(--spacing-400, 2rem);
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: stretch;
   gap: var(--spacing-150, 0.75rem);
-  flex-wrap: wrap;
 }
 
 .bookmarkconfirm__btn {
+  width: 100%;
   min-height: 3rem;
   display: inline-flex;
   align-items: center;
@@ -155,6 +156,18 @@
     box-shadow:
       0 0 0 2px var(--color-panel),
       0 0 0 4px var(--color-accent);
+  }
+}
+
+@media (min-width: 768px) {
+  .bookmarkconfirm__actions {
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .bookmarkconfirm__btn {
+    width: auto;
   }
 }
 
@@ -230,16 +243,5 @@
 
   .bookmarkconfirm__actions {
     margin-top: var(--spacing-300, 1.5rem);
-  }
-}
-
-@media (max-width: 420px) {
-  .bookmarkconfirm__actions {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
-  .bookmarkconfirm__btn {
-    width: 100%;
   }
 }

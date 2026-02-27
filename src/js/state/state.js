@@ -1,6 +1,7 @@
 import { fetchData } from "../api/api";
 import { createBookmark } from "./bookmarkFactory";
 import { refreshUI } from "../ui/refreshUI";
+import { loadFromStorage, saveToStorage } from "../services/storage";
 
 export const state = {
   theme: "light",
@@ -17,6 +18,8 @@ export const state = {
   bookmarks: [],
   editingBookmarkId: null,
   archivingBookmarkId: null,
+  deletingBookmarkId: null,
+  unarchivingBookmarkId: null,
 };
 
 export function getTagCounts() {
@@ -35,8 +38,15 @@ export function getTagCounts() {
   return tagCounts;
 }
 export async function initState() {
-  const data = await fetchData();
-  state.bookmarks = data.bookmarks;
+  const storageData = loadFromStorage();
+
+  if (storageData) {
+    state.bookmarks = storageData.bookmarks;
+    state.theme = storageData.theme;
+  } else {
+    const data = await fetchData();
+    state.bookmarks = data.bookmarks;
+  }
 }
 
 export function getSortedBookmarks() {
@@ -45,10 +55,16 @@ export function getSortedBookmarks() {
       ? state.bookmarks.filter((b) => b.isArchived)
       : state.bookmarks.filter((b) => !b.isArchived);
 
+  const searchedBookmark = state.searchQuery
+    ? baseBookmarks.filter((bookmark) =>
+        bookmark.title.toLowerCase().includes(state.searchQuery.toLocaleLowerCase()),
+      )
+    : [...baseBookmarks];
+
   const filteredBookmarks =
     state.selectedTags.length === 0
-      ? [...baseBookmarks]
-      : [...baseBookmarks].filter((bookmark) =>
+      ? [...searchedBookmark]
+      : [...searchedBookmark].filter((bookmark) =>
           bookmark.tags.some((tag) => state.selectedTags.includes(tag)),
         );
 
@@ -79,4 +95,9 @@ export function formatDates(date) {
   });
   const formattedDate = formatter.format(dateObj);
   return formattedDate;
+}
+
+export function deleteBookmark(id) {
+  state.bookmarks = state.bookmarks.filter((bookmark) => bookmark.id !== id);
+  refreshUI();
 }

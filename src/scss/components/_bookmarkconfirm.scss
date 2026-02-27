@@ -105,8 +105,8 @@
 
 .bookmarkconfirm__actions {
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   gap: var(--spacing-200, 1rem);
 }
 
@@ -114,6 +114,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   min-height: 3rem;
   padding: 0.75rem 1.25rem;
   border-radius: var(--radius-8, 0.5rem);
@@ -159,6 +160,18 @@
   }
 }
 
+@media (min-width: 768px) {
+  .bookmarkconfirm__actions {
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .bookmarkconfirm__btn {
+    width: auto;
+  }
+}
+
 @media (max-width: 700px) {
   .bookmarkconfirm {
     padding: var(--spacing-150, 0.75rem);
@@ -170,11 +183,4 @@
     border-radius: var(--radius-12, 0.75rem);
   }
 
-  .bookmarkconfirm__actions {
-    flex-wrap: wrap;
-  }
-
-  .bookmarkconfirm__btn {
-    flex: 1 1 10rem;
-  }
 }

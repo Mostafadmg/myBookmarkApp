@@ -1,19 +1,10 @@
-const bookmarksStorageKey = "bookmark-manager:bookmarks";
-
-export function loadBookmarks() {
-  try {
-    const raw = localStorage.getItem(bookmarksStorageKey);
-    if (!raw) {
-      return [];
-    }
-
-    const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return [];
-  }
+import { state } from "../state/state";
+export function saveToStorage() {
+  const { bookmarks, theme } = state;
+  localStorage.setItem("bookmarkApp", JSON.stringify({ bookmarks, theme }));
 }
 
-export function saveBookmarks(bookmarks) {
-  localStorage.setItem(bookmarksStorageKey, JSON.stringify(bookmarks));
+export function loadFromStorage() {
+  const data = localStorage.getItem("bookmarkApp");
+  return data ? JSON.parse(data) : null;
 }

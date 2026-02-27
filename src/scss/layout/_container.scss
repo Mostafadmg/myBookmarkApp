@@ -34,7 +34,6 @@
   background-color: var(--color-surface);
   border-radius: var(--radius-12, 0.75rem);
   border: 1px solid var(--color-border);
-  overflow: hidden;
 }
 
 .cards__header-title {
@@ -226,6 +225,25 @@
 
 .card__pinned {
   margin-left: auto;
+  white-space: nowrap;
+}
+
+.card__archived {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-025, 0.125rem) var(--spacing-100, 0.5rem);
+  border-radius: var(--radius-4, 0.25rem);
+  border: 1px solid var(--color-badge-border);
+  background-color: var(--color-badge-bg);
+  color: var(--color-archived-label-text, var(--colors-neutral-light-mode-800, #4c5c59));
+  text-align: center;
+  font-family: Manrope;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
   white-space: nowrap;
 }
 

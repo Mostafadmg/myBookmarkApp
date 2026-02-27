@@ -57,9 +57,35 @@ function renderSortOptions() {
 
 export function renderBookmarkItem() {
   const bookmarks = getSortedBookmarks();
+
   return bookmarks
     .map((bookmark) => {
       const panelId = `cardmenu-panel-${bookmark.id}`;
+      const archiveBtn = bookmark.isArchived
+        ? `<button class="cardmenu__item" role="menuitem" type="button" data-action="open-unarchive-confirm">
+    ${icons.unarchive}
+    <span>Unarchive</span>
+</button>`
+        : `<button class="cardmenu__item" role="menuitem" type="button" data-action="open-archive-confirm">
+    ${icons.archiveSmall}
+    <span>Archive</span>
+</button>`;
+
+      const deleteBtn = `<button class="cardmenu__item" role="menuitem" type="button" data-action="delete-modal-open">
+    ${icons.delete}
+    <span>Delete</span>
+</button>`;
+
+      const editBtn = ` <button class="cardmenu__item" role="menuitem" type="button" data-action="edit-bookmark">
+    ${icons.edit}
+    <span>Edit</span>
+</button>`;
+
+      const pinBtn = ` <button class="cardmenu__item" role="menuitem" type="button" data-action="toggle-pin-bookmark">
+    ${icons.pinSmall}
+    <span>${bookmark.pinned ? "Unpin" : "Pin"}</span>
+</button>
+`;
 
       return /* html */ `
 <div class="card__item" data-bookmark-id="${bookmark.id}">
@@ -94,20 +120,11 @@ export function renderBookmarkItem() {
                         <span>Copy URL</span>
                     </button>
 
-                    <button class="cardmenu__item" role="menuitem" type="button" data-action="toggle-pin-bookmark">
-                        ${icons.pinSmall}
-                        <span>${bookmark.pinned ? "Unpin" : "Pin"}</span>
-                    </button>
+                    ${bookmark.isArchived ? "" : pinBtn}
+                    ${bookmark.isArchived ? deleteBtn : editBtn}
 
-                    <button class="cardmenu__item" role="menuitem" type="button" data-action="edit-bookmark">
-                        ${icons.edit}
-                        <span>Edit</span>
-                    </button>
+                    ${archiveBtn}
 
-                    <button class="cardmenu__item" role="menuitem" type="button" data-action="open-archive-confirm">
-                        ${icons.archiveSmall}
-                        <span>Archive</span>
-                    </button>
                 </div>
             </div>
         </div>
@@ -146,11 +163,13 @@ export function renderBookmarkItem() {
         </div>
 
         ${
-          bookmark.pinned
-            ? ` <div class="card__pinned">
+          bookmark.isArchived
+            ? `<div class="card__archived">Archived</div>`
+            : bookmark.pinned
+              ? ` <div class="card__pinned">
             ${icons.pin}
         </div>`
-            : ""
+              : ""
         }
 
     </div>

@@ -80,16 +80,6 @@ export function addNewBookMark() {
 
   refreshUI();
   clearForm();
-
-  function setError(input) {
-    const field = input.closest(".addbookmark__field");
-    field.classList.add("error");
-  }
-
-  function clearError(input) {
-    const field = input.closest(".addbookmark__field");
-    field.classList.remove("error");
-  }
 }
 export function clearForm() {
   const title = document.querySelector(".addbookmark__input");
@@ -104,4 +94,13 @@ export function clearForm() {
   document
     .querySelectorAll(".addbookmark__field")
     .forEach((field) => field.classList.remove("error"));
+}
+function setError(input) {
+  const field = input.closest(".addbookmark__field");
+  field.classList.add("error");
+}
+
+function clearError(input) {
+  const field = input.closest(".addbookmark__field");
+  field.classList.remove("error");
 }

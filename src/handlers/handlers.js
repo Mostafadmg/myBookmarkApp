@@ -8,6 +8,7 @@ import { validateForm, addNewBookMark } from "../js/validation/validation";
 import { refreshUI } from "../js/ui/refreshUI";
 import { icons } from "../js/icons";
 import { clearForm } from "../js/validation/validation";
+import { deleteBookmark } from "../js/state/state";
 
 function setSidebarOpen(isOpen) {
   state.isMobileSidebarOpen = isOpen;
@@ -153,6 +154,9 @@ export function initHandlers() {
       url.value = selectedBookmark.url;
       tags.value = selectedBookmark.tags;
       state.editingBookmarkId = id;
+      document
+        .querySelectorAll(".addbookmark__field")
+        .forEach((field) => field.classList.remove("error"));
     }
 
     if (action === "open-archive-confirm") {
@@ -182,12 +186,56 @@ export function initHandlers() {
 
     if (action === "navigate-home") {
       state.activeView = "main";
+      setSidebarOpen(false);
       refreshUI();
     }
 
     if (action === "navigate-archived") {
       state.activeView = "archive";
+      setSidebarOpen(false);
       refreshUI();
+    }
+
+    if (action === "close-delete-confirm") {
+      toggleModal(".bookmarkconfirm--delete", false);
+    }
+
+    if (action === "cancel-delete-confirm") {
+      toggleModal(".bookmarkconfirm--delete", false);
+    }
+
+    if (action === "delete-modal-open") {
+      toggleModal(".bookmarkconfirm--delete", true);
+      const id = clickedBtn.closest("[data-bookmark-id]").dataset.bookmarkId;
+      state.deletingBookmarkId = id;
+    }
+
+    if (action === "delete-bookmark") {
+      const id = state.deletingBookmarkId;
+      deleteBookmark(id);
+      toggleModal(".bookmarkconfirm--delete", false);
+    }
+
+    if (action === "open-unarchive-confirm") {
+      toggleModal(".bookmarkconfirm--unarchive", true);
+      const id = clickedBtn.closest("[data-bookmark-id]").dataset.bookmarkId;
+      state.unarchivingBookmarkId = id;
+    }
+
+    if (action === "unarchive-bookmark") {
+      const id = state.unarchivingBookmarkId;
+      const selectedBookmark = state.bookmarks.find((bookmark) => bookmark.id === id);
+      selectedBookmark.isArchived = false;
+      refreshUI();
+      toggleModal(".bookmarkconfirm--unarchive", false);
+    }
+
+    if (action === "cancel-unarchive-confirm") {
+      toggleModal(".bookmarkconfirm--unarchive", false);
+    }
+
+    if (action === "close-unarchive-confirm") {
+      toggleModal(".bookmarkconfirm--unarchive", false);
     }
   });
 
@@ -203,6 +251,12 @@ export function initHandlers() {
     if (form.matches(".authmodal__form")) {
       e.preventDefault();
     }
+  });
+
+  document.addEventListener("input", (e) => {
+    state.searchQuery = document.getElementById("header__input").value;
+
+    refreshUI();
   });
 }
 
