@@ -1,6 +1,10 @@
+import { withBase } from "../services/path";
+
 export async function fetchData() {
   try {
-    const url = import.meta.env.DEV ? `/data.json?t=${Date.now()}` : "/data.json";
+    const url = import.meta.env.DEV
+      ? withBase(`data.json?t=${Date.now()}`)
+      : withBase("data.json");
     const response = await fetch(url, { cache: "no-store" });
 
     if (!response.ok) {
@@ -11,6 +15,6 @@ export async function fetchData() {
     return data;
   } catch (error) {
     console.error(error);
-    return [];
+    return { bookmarks: [] };
   }
 }

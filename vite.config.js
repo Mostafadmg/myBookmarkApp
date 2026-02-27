@@ -1,3 +1,4 @@
+import fs from "node:fs";
 import path from "node:path";
 import { defineConfig } from "vite";
 
@@ -14,8 +15,32 @@ function reloadOnDataJsonChange() {
   };
 }
 
-export default defineConfig({
-  plugins: [reloadOnDataJsonChange()],
+function copyRuntimeFiles() {
+  return {
+    name: "copy-runtime-files",
+    apply: "build",
+    closeBundle() {
+      const rootDir = process.cwd();
+      const distDir = path.resolve(rootDir, "dist");
+      const entries = [
+        { from: path.resolve(rootDir, "assets"), to: path.resolve(distDir, "assets") },
+        { from: path.resolve(rootDir, "data.json"), to: path.resolve(distDir, "data.json") },
+      ];
+
+      entries.forEach(({ from, to }) => {
+        if (!fs.existsSync(from)) return;
+        fs.cpSync(from, to, { recursive: true, force: true });
+      });
+    },
+  };
+}
+
+const repoBase = "/myBookmarkApp/";
+
+export default defineConfig(({ command }) => ({
+  base: command === "build" ? repoBase : "/",
+  publicDir: false,
+  plugins: [reloadOnDataJsonChange(), copyRuntimeFiles()],
   server: {
     open: true,
   },
@@ -37,4 +62,4 @@ export default defineConfig({
   build: {
     sourcemap: true,
   },
-});
+}));

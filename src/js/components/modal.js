@@ -2,6 +2,7 @@ import { icons } from "../icons";
 import { renderBookmarkItem } from "./bookmark";
 import { renderSidebar } from "./sidebar";
 import { clearForm } from "../validation/validation";
+import { withBase } from "../services/path";
 
 export function renderModal() {
   return /* html */ `
@@ -167,12 +168,12 @@ export function renderModal() {
             <div class="authmodal__brand">
               <img
                 class="authmodal__logo authmodal__logo--light"
-                src="/assets/images/logo-light-theme.svg"
+                src="${withBase("assets/images/logo-light-theme.svg")}"
                 alt="Bookmark Manager"
               />
               <img
                 class="authmodal__logo authmodal__logo--dark"
-                src="/assets/images/logo-dark-theme.svg"
+                src="${withBase("assets/images/logo-dark-theme.svg")}"
                 alt="Bookmark Manager"
               />
             </div>

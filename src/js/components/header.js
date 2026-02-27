@@ -1,5 +1,6 @@
 import { icons } from "../icons";
 import { state } from "../state/state";
+import { withBase } from "../services/path";
 
 export function renderHeader() {
   const lightActive = state.theme === "light" ? "is-active" : "";
@@ -49,7 +50,7 @@ export function renderHeader() {
                 aria-expanded="false"
                 aria-controls="accountmenu-panel"
               >
-                <img src="/assets/images/image-avatar.webp" alt="Emily Carter profile" />
+                <img src="${withBase("assets/images/image-avatar.webp")}" alt="Emily Carter profile" />
               </button>
 
               <div
@@ -59,7 +60,7 @@ export function renderHeader() {
               >
                 <div class="accountmenu__profile">
                   <div class="accountmenu__avatar">
-                    <img src="/assets/images/image-avatar.webp" alt="" />
+                    <img src="${withBase("assets/images/image-avatar.webp")}" alt="" />
                   </div>
 
                   <div class="accountmenu__profileText">

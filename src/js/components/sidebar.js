@@ -1,5 +1,6 @@
 import { state, getTagCounts } from "../state/state";
 import { icons } from "../icons";
+import { withBase } from "../services/path";
 
 export function renderSidebar() {
   const isHomeActive = state.activeView === "main";
@@ -8,8 +9,8 @@ export function renderSidebar() {
   return /*html*/ `
 <div id="sidebar-panel" class="sidebar${state.isMobileSidebarOpen ? " open" : ""}" aria-hidden="${String(!state.isMobileSidebarOpen)}">
     <div class="sidebar__header">
-        <img class="sidebar__logo sidebar__logo--light" src="/assets/images/logo-light-theme.svg" alt="Bookmark Manager" />
-        <img class="sidebar__logo sidebar__logo--dark" src="/assets/images/logo-dark-theme.svg" alt="Bookmark Manager" />
+        <img class="sidebar__logo sidebar__logo--light" src="${withBase("assets/images/logo-light-theme.svg")}" alt="Bookmark Manager" />
+        <img class="sidebar__logo sidebar__logo--dark" src="${withBase("assets/images/logo-dark-theme.svg")}" alt="Bookmark Manager" />
         <button class="sidebar-closeBtn" type="button" data-action="close-sidebar">
             ${icons.close}
         </button>
